@@ -124,7 +124,14 @@ const HomeAdmin = () => {
 
             <main className="main-content">
                 <div className="top-actions">
-                    <button className="submit-button">SUBMIT</button>
+                    <input
+                        type="file"
+                        accept=".csv"
+                        style={{ display: 'none' }}
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                    />
+                    <button className="submit-button" onClick={handleSubmitClick}>SUBMIT</button>
                 </div>
                 <div className="table-container">
                     <DataTable
