@@ -35,15 +35,34 @@ export class Auth{
         return response;
     }
 
-    async departmentList(){
-        const response = await fetch(`${ENV.BASE_API}${API_ROUTES.DEPARTMENT_LIST}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+    async deptos() {
+        const response = await fetch(`${ENV.BASE_API}${API_ROUTES.DEPARTMENTS}`, {
+          method: "GET",
         });
-        return response;
-    }   
+      
+        if (!response.ok) {
+          throw new Error("Error al obtener los datos");
+        }
+      
+        const data = await response.json()
+      
+        return data;
+      } 
+
+      async uploadFile(formData){
+        const response = await fetch(`${ENV.BASE_API}${API_ROUTES.UPLOAD_FILE}`, {
+            method: 'POST',
+            body: formData,
+        });
+    
+        if (!response.ok) {
+            throw new Error('Error al cargar el archivo');
+        }
+    
+        const data = await response.json();
+        console.log(data);
+        return data;
+      }
 
 }
 

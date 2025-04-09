@@ -71,7 +71,7 @@ const Login = () => {
   }
 
   return <div className='login-container'>
-        <Title level={2} style={{textAlign: "center"}}>LogIn</Title>
+        <Title level={2} style={{textAlign: "center", color: "#72B4FF"}}>LogIn</Title>
         <form onSubmit={handleSubmit}> 
           {/*Input email*/} 
           <div className='form-group'>

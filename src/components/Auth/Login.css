@@ -17,7 +17,7 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #555;
+    color: black;
 }
 
 .form-group input {
@@ -44,5 +44,5 @@
 }
 
 .login-button{
- background-color: black;
+ background-color: #9EC6F3;
 }

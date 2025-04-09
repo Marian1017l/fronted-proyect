@@ -1,12 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './HomeAdmin.css';
 import DataTable from 'react-data-table-component';
 import Swal from 'sweetalert2';
-
+import { auth } from "../../api/auth";
 
 const HomeAdmin = () => {
     const fileInputRef = useRef(null);
-
+    const [deptos, setDeptosData] = useState([]);
+    const [loginError, setLoginError] = useState(null);
     const columns = [
         {
             name: "Departamento",
@@ -17,6 +18,24 @@ const HomeAdmin = () => {
             selector: row => row.municipio
         }
     ];
+    const departments = async () => {
+        let response = {};
+        try {
+            response = await auth.deptos();
+        } catch (error) {
+        }
+        // Convierte el objeto a un array usando sus valores.
+        return Array.isArray(response) ? response : [response];
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await departments(); // la función que creaste
+            setDeptosData(response);
+        }
+        fetchData();
+    }, []);
+
 
     const data = [
         {
@@ -91,7 +110,7 @@ const HomeAdmin = () => {
     };
 
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
@@ -113,7 +132,30 @@ const HomeAdmin = () => {
             text: `Archivo cargado: ${file.name}`,
         });
 
-        console.log('Archivo seleccionado:', file);
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try{
+            Swal.fire({
+                title: 'Cargando...',
+                text: 'Estamos obteniendo la información',
+                allowOutsideClick: false,
+                didOpen: () => {
+                  Swal.showLoading();
+                }
+              });
+            const response = await auth.uploadFile(formData);
+            console.log(response);
+            Swal.close();
+            window.location.reload();
+           
+        }catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un error al cargar el archivo.',
+            });
+        }
     };
 
     return (
@@ -136,7 +178,7 @@ const HomeAdmin = () => {
                 <div className="table-container">
                     <DataTable
                         columns={columns}
-                        data={data}
+                        data={deptos}
                         pagination
                         customStyles={customStyles}
                     />
