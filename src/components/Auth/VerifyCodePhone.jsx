@@ -4,7 +4,8 @@ import './VerifyCodePhone.css';
 import { setLoading } from '../../redux/authSlice';
 import { auth } from '../../api/auth';
 import { useNavigate, Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
+import { jwtDecode }from 'jwt-decode';
 
 const VerifyCodePhone = () => {
   const [code, setCode] = useState("");
@@ -43,16 +44,36 @@ const VerifyCodePhone = () => {
     dispatch(setLoading(true));
 
     try {
-      const response = await auth.verifyCodePhone(code);
+      const email = localStorage.getItem("email");
+      const response = await auth.verifyCodePhone(email, code);
+
 
       if (!response.ok) {
-        //salto 
+        Swal.fire({
+          title: 'CODES EXPIRES!',
+          icon: 'error',
+          showConfirmButton: false
+        });
+        return;
       }
-      else {
-        console.log("Verificado:", response);
-        setMessage("Código verificado correctamente.")
+
+      const data = await response.json(); // Suponiendo que el backend responde con { token: '...', ... }
+
+      const token = data.token;
+      const decoded = jwtDecode(token);
+      console.log(decoded.role);
+
+      if (decoded.role === 'SUPERADMIN') {
         navigate("/homeAdmin");
+      } else {
+        Swal.fire({
+          title: 'Access Denied',
+          text: 'No tienes permisos de administrador.',
+          icon: 'error',
+        });
+        return;
       }
+
     } catch (error) {
       console.error("Error en la verificación:", error);
       setVerifyError("Error al verificar el código.");
@@ -66,7 +87,7 @@ const VerifyCodePhone = () => {
     if (email) {
       const response = auth.resendCodePhone(email);
       console.log(response);
-      
+
       console.log("Código reenviado");
     }
   };

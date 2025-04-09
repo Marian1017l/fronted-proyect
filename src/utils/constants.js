@@ -8,5 +8,6 @@ export const ENV={
         SINGIN: '/auth/signin',
         VERIFY_CODE_PHONE: '/auth/2fa',
         RESEND_CODE_PHONE: '/auth/2fa/resend',
+        DEPARTMENT_LIST: '/departments'
     }
 }
