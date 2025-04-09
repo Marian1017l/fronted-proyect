@@ -1,0 +1,49 @@
+.home-admin {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #E0EBFF;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1000;
+}
+
+.main-header h1 {
+    color: black;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.main-content {
+    padding: 120px 40px 40px;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.submit-button {
+    background-color: #9EC6F3;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #7DA8E0;
+}

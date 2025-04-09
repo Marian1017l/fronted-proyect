@@ -1,0 +1,99 @@
+.verify-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.verify-box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    max-width: 320px;
+    width: 100%;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.verify-header {
+    background-color: #E0EBFF;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 4px 4px 0 0;
+    margin: -24px -24px 16px -24px;
+    border-bottom: 1px solid #ccc;
+}
+
+.verify-instruction {
+    margin-bottom: 16px;
+    color: #333;
+    font-size: 14px;
+}
+
+.verify-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    background-color: #eee;
+}
+
+.verify-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #9EC6F3;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.verify-button:hover {
+    background-color: #9dbde6;
+}
+
+.verify-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.verify-footer {
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.resend {
+    color: #9dbde6;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.field-error {
+    color: red;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.field-success {
+    color: green;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.resend {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.resend:hover {
+    color: #0056b3;
+}
